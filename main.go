@@ -2,25 +2,15 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
-	"os"
-	"path/filepath"
 )
 
+func handler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "hello world!\n")
+}
+
 func main() {
-	pwd, err := filepath.Abs(filepath.Dir(os.Args[0]))
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	port := ""
-	if len(os.Args) == 2 {
-		port = ":" + os.Args[1]
-	} else {
-		port = ":8080"
-	}
-
-	fmt.Println("Server started at http://localhost:" + port[1:])
-	log.Fatal(http.ListenAndServe(port, http.FileServer(http.Dir(pwd))))
+	http.HandleFunc("/", handler)
+	fmt.Println("Application started on port 8080")
+	http.ListenAndServe(":8080", nil)
 }

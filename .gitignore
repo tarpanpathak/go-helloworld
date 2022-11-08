@@ -1,0 +1,5 @@
+# Mac OS files
+.DS_Store
+
+# Binary
+simplehttpserver
