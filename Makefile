@@ -18,9 +18,9 @@ APP=$(shell basename "${CWD}")
 GO_VERSION=1.19.1
 
 # Avoid name collisions between targets and files.
-.PHONY: help build run test \
-	build-docker run-docker tag login push logout \
-	images debug clean
+.PHONY: help build-local run-local test-local \
+	build-docker run-docker login-docker push-docker logout-docker images-docker debug-docker \
+	clean-docker
 
 # A target to format and present all supported targets with their descriptions.
 help : Makefile
@@ -67,6 +67,6 @@ images-docker:
 debug-docker:
 	@docker run -it --rm --entrypoint=/bin/sh $(DKR_IMG)
 
-## clean 			: Cleanup temporary files.
-clean:
+## clean-docker 		: Cleanup the application Docker image/s.
+clean-docker:
 	docker rmi -f $(DKR_IMG)

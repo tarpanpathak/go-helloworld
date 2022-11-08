@@ -1,4 +1,4 @@
-name: build
+name: "Build and Publish"
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
@@ -13,8 +13,8 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+  # This workflow contains a single job called "build-and-publish"
+  build-and-publish:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -31,7 +31,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GH_PAT_ADMIN }}
 
       - name: Publish container
         if: github.ref_name == 'main'
