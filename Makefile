@@ -3,10 +3,11 @@
 ## -----------------------------------------------------------------------------
 
 # Dynamic variables - passed at runtime
+GH_ORG?=tarpanpathak
 DKR_REGISTRY?=ghcr.io
 DKR_REGISTRY_TOKEN?=${GH_PAT_ADMIN}
 DKR_REGISTRY_USER?=${GH_USER}
-DKR_REPOSITORY?=tarpanpathak/${APP}
+DKR_REPOSITORY?=${GH_ORG}/${APP}
 DKR_TAG?=${BRANCH}
 DKR_IMG?=${DKR_REGISTRY}/${DKR_REPOSITORY}:${DKR_TAG}
 
