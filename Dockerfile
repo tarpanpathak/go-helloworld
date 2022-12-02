@@ -1,6 +1,5 @@
 # Build - Start a golang base image
-ARG GO_VERSION
-FROM golang:${GO_VERSION}-alpine
+FROM golang:1.19.1-alpine
 
 LABEL maintainer "Tarpan Pathak <tarpanpathak720@gmail.com>"
 

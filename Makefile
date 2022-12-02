@@ -41,7 +41,7 @@ test-local:
 
 ## build-docker 		: Compile the application in Docker.
 build-docker:
-	docker build --build-arg GO_VERSION=$(GO_VERSION) -t $(DKR_IMG) .
+	docker build -t $(DKR_IMG) .
 
 ## run-docker 		: Run the application in Docker.
 run-docker:
