@@ -3,3 +3,6 @@
 
 # Binary
 simplehttpserver
+
+# Deployment
+deploy.nomad
