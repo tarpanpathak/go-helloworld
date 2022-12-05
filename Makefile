@@ -1,5 +1,5 @@
 ## -----------------------------------------------------------------------------
-## Make targets for building, publishing, and deploying simplehttpserver.
+## Make targets for building, publishing, and deploying this application.
 ## -----------------------------------------------------------------------------
 
 # Dynamic variables - passed at runtime
