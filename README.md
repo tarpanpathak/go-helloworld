@@ -1,6 +1,6 @@
-# simplehttpserver
+# helloworld
 
-This a simple HTTP server written in Go.
+This is a simple HTTP server written in Go.
 
 ## Assumptions
 
@@ -13,7 +13,7 @@ The project assumes the following:
 - Credentials to publish to the Docker Registry of your liking. This project defaults to the [GitHub Container Registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry).
 - (Optional - for local testing) A basic understanding of [Make](https://www.gnu.org/software/make/manual/make.html#Introduction).
   - Make version `>= GNU Make 3.81`.
-  - **Important Note**: This project includes a [Makefile](https://github.com/tarpanpathak/simplehttpserver/blob/main/Makefile) to speed up local development in Terraform. The `make` targets act as a wrapper around Terraform commands. As such, `make` has only been tested/verified on **Linux/Mac OS**. Though, it is possible to [install make using Chocolatey](https://community.chocolatey.org/packages/make), we **do not** guarantee this approach as it has not been tested/verified. You may use the commands in the [Makefile](https://github.com/tarpanpathak/simplehttpserver/blob/main/Makefile) as a guide to run each Terraform command locally on Windows.
+  - **Important Note**: This project includes a [Makefile](https://github.com/tarpanpathak/helloworld/blob/main/Makefile) to speed up local development in Terraform. The `make` targets act as a wrapper around Terraform commands. As such, `make` has only been tested/verified on **Linux/Mac OS**. Though, it is possible to [install make using Chocolatey](https://community.chocolatey.org/packages/make), we **do not** guarantee this approach as it has not been tested/verified. You may use the commands in the [Makefile](https://github.com/tarpanpathak/helloworld/blob/main/Makefile) as a guide to run each Terraform command locally on Windows.
 
 ## Contributions
 
@@ -22,10 +22,10 @@ Contributions are always welcome. As such, this project uses the `main` branch a
 **Step 1**. Clone this project.
 ```sh
 # Using Git
-$ git clone git@github.com:tarpanpathak/simplehttpserver.git
+$ git clone git@github.com:tarpanpathak/helloworld.git
 
 # Using HTTPS
-$ git clone https://github.com/tarpanpathak/simplehttpserver.git
+$ git clone https://github.com/tarpanpathak/helloworld.git
 ```
 
 **Step 2**. Checkout a feature branch: `git checkout -b feature/abc`.
@@ -52,7 +52,7 @@ $ git push --set-upstream origin feature/abc
 
 ## Test
 
-**Important Note**: This project includes a [Makefile](https://github.com/tarpanpathak/simplehttpserver/blob/main/Makefile) to speed up local development in Terraform. The `make` targets act as a wrapper around Terraform commands. As such, `make` has only been tested/verified on **Linux/Mac OS**. Though, it is possible to [install make using Chocolatey](https://community.chocolatey.org/packages/make), we **do not** guarantee this approach as it has not been tested/verified. You may use the commands in the [Makefile](https://github.com/tarpanpathak/simplehttpserver/blob/main/Makefile) as a guide to run each Terraform command locally on Windows.
+**Important Note**: This project includes a [Makefile](https://github.com/tarpanpathak/helloworld/blob/main/Makefile) to speed up local development in Terraform. The `make` targets act as a wrapper around Terraform commands. As such, `make` has only been tested/verified on **Linux/Mac OS**. Though, it is possible to [install make using Chocolatey](https://community.chocolatey.org/packages/make), we **do not** guarantee this approach as it has not been tested/verified. You may use the commands in the [Makefile](https://github.com/tarpanpathak/helloworld/blob/main/Makefile) as a guide to run each Terraform command locally on Windows.
 
 ```sh
 # Export the required environment variables 
