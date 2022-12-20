@@ -35,7 +35,9 @@ jobs:
           github-token: ${{ secrets.GH_TOKEN }}
 
       - name: Login to the container registry
-        run: make login-docker DKR_REGISTRY_USER=${{ github.actor }} DKR_REGISTRY_TOKEN=${{ secrets.GH_TOKEN }}
+        run: |
+          RELEASE_VERSION=$(cat .version)
+          make login-docker DKR_REGISTRY_USER=${{ github.actor }} DKR_REGISTRY_TOKEN=${{ secrets.GH_TOKEN }} DKR_TAG=${RELEASE_VERSION}
 
       - name: Publish container
-        run: make push-docker
+        run: make push-docker DKR_TAG=${RELEASE_VERSION}
