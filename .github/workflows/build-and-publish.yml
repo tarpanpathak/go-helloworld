@@ -31,16 +31,12 @@ jobs:
       - uses: actions/checkout@v3
       
       - uses: go-semantic-release/action@v1
+        id: semrel
         with:
           github-token: ${{ secrets.GH_TOKEN }}
-        run: make release
 
       - name: Login to the container registry
-        run: |
-          RELEASE_VERSION=$(cat .version)
-          make login-docker DKR_REGISTRY_USER=${{ github.actor }} DKR_REGISTRY_TOKEN=${{ secrets.GH_TOKEN }} DKR_TAG=${RELEASE_VERSION}
+        run: make login-docker DKR_REGISTRY_USER=${{ github.actor }} DKR_REGISTRY_TOKEN=${{ secrets.GH_TOKEN }}
 
       - name: Publish container
-        run: |
-          RELEASE_VERSION=$(cat .version)
-          make push-docker DKR_TAG=${RELEASE_VERSION}
+        run: make push-docker DKR_TAG=${{ steps.semrel.outputs.version }}
