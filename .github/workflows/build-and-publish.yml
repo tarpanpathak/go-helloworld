@@ -33,6 +33,7 @@ jobs:
       - uses: go-semantic-release/action@v1
         with:
           github-token: ${{ secrets.GH_TOKEN }}
+        run: make release
 
       - name: Login to the container registry
         run: |
@@ -40,4 +41,6 @@ jobs:
           make login-docker DKR_REGISTRY_USER=${{ github.actor }} DKR_REGISTRY_TOKEN=${{ secrets.GH_TOKEN }} DKR_TAG=${RELEASE_VERSION}
 
       - name: Publish container
-        run: make push-docker DKR_TAG=${RELEASE_VERSION}
+        run: |
+          RELEASE_VERSION=$(cat .version)
+          make push-docker DKR_TAG=${RELEASE_VERSION}
