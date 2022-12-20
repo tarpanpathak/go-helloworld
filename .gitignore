@@ -6,3 +6,6 @@ helloworld
 
 # Deployment
 deploy.nomad
+
+# Semantic Release
+.semrel/*
