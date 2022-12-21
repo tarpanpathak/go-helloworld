@@ -29,11 +29,6 @@ jobs:
         with:
           name: docker-image
           path: helloworld.tar
-      
-      - name: Verify uploaded artifact
-        run: |
-          pwd
-          ls -la .
   
   release:
     # if: github.ref_name == 'main'
@@ -52,15 +47,11 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: docker-image
-      
-      - name: Verify downloaded artifact
-        run: |
-          pwd
-          ls -la .
 
       - name: Publish container
         run: |
           make load-docker
+          make tag-docker DKR_IMG_SEMREL=ghcr.io/tarpanpathak/helloworld:v1.0.0
           # make tag-docker DKR_IMG_SEMREL=ghcr.io/tarpanpathak/helloworld:${{ steps.semrel.outputs.version }}
           # make login-docker DKR_REGISTRY_USER=${{ github.actor }} DKR_REGISTRY_TOKEN=${{ secrets.GH_TOKEN }}
           # make push-docker DKR_IMG_SEMREL=ghcr.io/tarpanpathak/helloworld:${{ steps.semrel.outputs.version }}
