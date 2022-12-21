@@ -54,7 +54,7 @@ jobs:
           name: docker-image
           path: helloworld.tar
       
-       - name: Verify downloaded artifact
+      - name: Verify downloaded artifact
         run: |
           pwd
           ls -la .
