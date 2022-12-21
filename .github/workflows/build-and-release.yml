@@ -23,6 +23,12 @@ jobs:
         run: |
           make build-docker
           make save-docker
+      
+      - name: Archive Docker image
+        uses: actions/upload-artifact@v3
+        with:
+          name: docker-image
+          path: image/helloworld.tar
   
   release:
     if: github.ref_name == 'main'
@@ -36,6 +42,11 @@ jobs:
         id: semrel
         with:
           github-token: ${{ secrets.GH_TOKEN }}
+      
+      - name: Download Docker image
+        uses: actions/download-artifact@v3
+        with:
+          name: docker-image
 
       - name: Publish container
         run: |
