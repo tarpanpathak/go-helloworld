@@ -29,29 +29,34 @@ jobs:
         with:
           name: docker-image
           path: helloworld.tar
-  
-  release:
-    # if: github.ref_name == 'main'
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - uses: actions/checkout@v3
       
-      # - uses: go-semantic-release/action@v1
-      #   id: semrel
-      #   with:
-      #     github-token: ${{ secrets.GH_TOKEN }}
-      
-      - name: Download Docker image
-        uses: actions/download-artifact@v3
-        with:
-          name: docker-image
-          path: helloworld.tar
-
-      - name: Publish container
+      - name: Verify uploaded artifact
         run: |
-          make load-docker
-          # make tag-docker DKR_IMG_SEMREL=ghcr.io/tarpanpathak/helloworld:${{ steps.semrel.outputs.version }}
-          # make login-docker DKR_REGISTRY_USER=${{ github.actor }} DKR_REGISTRY_TOKEN=${{ secrets.GH_TOKEN }}
-          # make push-docker DKR_IMG_SEMREL=ghcr.io/tarpanpathak/helloworld:${{ steps.semrel.outputs.version }}
+          pwd
+          ls -la .
+  
+  # release:
+  #   # if: github.ref_name == 'main'
+  #   runs-on: ubuntu-latest
+  #   needs: build
+
+  #   steps:
+  #     - uses: actions/checkout@v3
+      
+  #     # - uses: go-semantic-release/action@v1
+  #     #   id: semrel
+  #     #   with:
+  #     #     github-token: ${{ secrets.GH_TOKEN }}
+      
+  #     - name: Download Docker image
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: docker-image
+  #         path: helloworld.tar
+
+  #     - name: Publish container
+  #       run: |
+  #         make load-docker
+  #         make tag-docker DKR_IMG_SEMREL=ghcr.io/tarpanpathak/helloworld:${{ steps.semrel.outputs.version }}
+  #         make login-docker DKR_REGISTRY_USER=${{ github.actor }} DKR_REGISTRY_TOKEN=${{ secrets.GH_TOKEN }}
+  #         make push-docker DKR_IMG_SEMREL=ghcr.io/tarpanpathak/helloworld:${{ steps.semrel.outputs.version }}
