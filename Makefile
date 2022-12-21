@@ -4,13 +4,13 @@
 
 # Dynamic variables - passed at runtime
 GH_ORG?=tarpanpathak
-GH_TOKEN?=${GH_TOKEN}
 DKR_REGISTRY?=ghcr.io
-DKR_REGISTRY_TOKEN?=${GH_PAT_ADMIN}
+DKR_REGISTRY_TOKEN?=${GH_TOKEN}
 DKR_REGISTRY_USER?=${GH_USER}
 DKR_REPOSITORY?=${GH_ORG}/${APP}
-DKR_TAG?=main
-DKR_IMG?=${DKR_REGISTRY}/${DKR_REPOSITORY}:${DKR_TAG}
+DKR_IMG_SEMREL?=
+DKR_IMG_TAG?=main
+DKR_IMG?=${DKR_REGISTRY}/${DKR_REPOSITORY}:${DKR_IMG_TAG}
 
 # Static variables
 BRANCH=$(shell git rev-parse --abbrev-ref HEAD)
@@ -43,14 +43,14 @@ test:
 ## release-dry 	: Generate a new the version without creating a new release.
 release-dry: clean-release
 	semantic-release \
-		--token ${GH_TOKEN} \
+		--token ${DKR_REGISTRY_TOKEN} \
 		--allow-no-changes --dry --no-ci \
 		--provider-opt "slug=tarpanpathak/helloworld"
 
 ## release 	: Generate a new SemVer based module tag using Semantic Release.
 release:
 	semantic-release \
-		--token ${GH_TOKEN} \
+		--token ${DKR_REGISTRY_TOKEN} \
 		--allow-no-changes \
 		--version-file \
 		--provider-opt "slug=tarpanpathak/helloworld"	
@@ -63,6 +63,19 @@ build-docker:
 run-docker:
 	docker run -d $(DKR_IMG)
 
+## save-docker	: Save the Docker image for later use.
+save-docker:
+	mkdir -p image
+	docker save $(DKR_IMG) > image/helloworld.tar
+
+## load-docker	: Load the previously saved Docker image.
+load-docker:
+	docker load -i image/helloworld.tar
+
+## tag-docker 	: Tag the Docker image.
+tag-docker:
+	docker image tag $(DKR_IMG) $(DKR_IMG_SEMREL)
+
 ## login-docker	: Login to the Docker registry.
 login-docker:
 	@echo ${DKR_REGISTRY_TOKEN} | docker login \
@@ -70,7 +83,7 @@ login-docker:
 
 ## push-docker 	: Publish the Docker image to the Docker registry.
 push-docker:
-	docker push $(DKR_IMG)
+	docker push $(DKR_IMG_SEMREL)
 
 ## logout-docker	: Logout of the Docker registry.
 logout-docker:
@@ -87,6 +100,7 @@ debug-docker:
 ## clean-docker 	: Cleanup the application Docker image/s.
 clean-docker:
 	docker rmi -f $(DKR_IMG)
+	rm -rf image/helloworld.tar
 
 ## clean-release 	: Cleanup the release artifacts.
 clean-release:
