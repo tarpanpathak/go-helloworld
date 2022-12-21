@@ -24,11 +24,11 @@ jobs:
           make build-docker
           make save-docker
       
-      - name: Archive Docker image
+      - name: Upload Docker image
         uses: actions/upload-artifact@v3
         with:
           name: docker-image
-          path: image/helloworld.tar
+          path: helloworld.tar
   
   release:
     if: github.ref_name == 'main'
@@ -47,7 +47,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: docker-image
-          path: image/helloworld.tar
+          path: helloworld.tar
 
       - name: Publish container
         run: |
