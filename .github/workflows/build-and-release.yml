@@ -58,9 +58,9 @@ jobs:
           pwd
           ls -la .
 
-      # - name: Publish container
-      #   run: |
-      #     make load-docker
-      #     make tag-docker DKR_IMG_SEMREL=ghcr.io/tarpanpathak/helloworld:${{ steps.semrel.outputs.version }}
-      #     make login-docker DKR_REGISTRY_USER=${{ github.actor }} DKR_REGISTRY_TOKEN=${{ secrets.GH_TOKEN }}
-      #     make push-docker DKR_IMG_SEMREL=ghcr.io/tarpanpathak/helloworld:${{ steps.semrel.outputs.version }}
+      - name: Publish container
+        run: |
+          make load-docker
+          # make tag-docker DKR_IMG_SEMREL=ghcr.io/tarpanpathak/helloworld:${{ steps.semrel.outputs.version }}
+          # make login-docker DKR_REGISTRY_USER=${{ github.actor }} DKR_REGISTRY_TOKEN=${{ secrets.GH_TOKEN }}
+          # make push-docker DKR_IMG_SEMREL=ghcr.io/tarpanpathak/helloworld:${{ steps.semrel.outputs.version }}
