@@ -2,13 +2,10 @@
 .DS_Store
 
 # Binary
-helloworld
+helloworld*
 
 # Deployment
 deploy.nomad
-
-# Docker
-image/*
 
 # Semantic Release
 .semrel/*

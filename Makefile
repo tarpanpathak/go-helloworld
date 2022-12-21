@@ -65,12 +65,11 @@ run-docker:
 
 ## save-docker	: Save the Docker image for later use.
 save-docker:
-	mkdir -p image
-	docker save $(DKR_IMG) > image/helloworld.tar
+	docker save $(DKR_IMG) > helloworld.tar
 
 ## load-docker	: Load the previously saved Docker image.
 load-docker:
-	docker load -i image/helloworld.tar
+	docker load -i helloworld.tar
 
 ## tag-docker 	: Tag the Docker image.
 tag-docker:
@@ -100,7 +99,7 @@ debug-docker:
 ## clean-docker 	: Cleanup the application Docker image/s.
 clean-docker:
 	docker rmi -f $(DKR_IMG)
-	rm -rf image/helloworld.tar
+	rm -rf helloworld.tar
 
 ## clean-release 	: Cleanup the release artifacts.
 clean-release:
