@@ -42,22 +42,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
-      - name: Verify downloaded artifact
-        run: |
-          pwd
-          ls -la .
       
       # - uses: go-semantic-release/action@v1
       #   id: semrel
       #   with:
       #     github-token: ${{ secrets.GH_TOKEN }}
       
-      # - name: Download Docker image
-      #   uses: actions/download-artifact@v3
-      #   with:
-      #     name: docker-image
-      #     path: helloworld.tar
+      - name: Download Docker image
+        uses: actions/download-artifact@v3
+        with:
+          name: docker-image
+          path: helloworld.tar
+      
+       - name: Verify downloaded artifact
+        run: |
+          pwd
+          ls -la .
 
       # - name: Publish container
       #   run: |
