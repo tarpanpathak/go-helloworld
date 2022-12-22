@@ -47,7 +47,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: docker-image
-          path: helloworld.tar
 
       - name: Publish container
         run: |
