@@ -59,11 +59,7 @@ $ git push --set-upstream origin feature/abc
 $ export DKR_REGISTRY_USER=<some_user>
 $ export DKR_REGISTRY_TOKEN=<some_token>
 # Compile the application in Docker
-$ make build-docker
-# Compile the application natively
-$ make build-local
+$ make build-docker # OR make build-local to compile natively
 # Run the application in Docker
-$ make run-docker
-# Destroy the infrastructure
-$ make run-local
+$ make run-docker # OR make run-local to run natively
 ```
