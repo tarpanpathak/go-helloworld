@@ -16,7 +16,7 @@ const (
 func main() {
 	log.Println("Starting helloworld application...")
 
-	// Root endpoint returns hello world
+	// Root endpoint returns "Hello World"
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		log.Println("Hello World")
 	})
