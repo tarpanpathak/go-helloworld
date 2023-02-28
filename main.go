@@ -21,7 +21,7 @@ func main() {
 		log.Println("Hello World")
 	})
 
-	// Health endpoint returns health
+	// Health endpoint returns health status
 	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
 		log.Println("Healthy")
 	})
